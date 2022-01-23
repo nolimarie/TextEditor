@@ -19,22 +19,27 @@ module.exports = () => {
     },
 
     plugins: [
-      new HtmlWebpackPlugin ({
+      // Webpack plugin that generates our html file and injects our bundles. 
+      new HtmlWebpackPlugin({
         template: './index.html',
-        title: 'Webpack Plugin'
+        title: 'Contact Cards'
       }),
 
+      // Injects our custom service worker
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
       }),
 
+      // Creates a manifest.json file.
       new WebpackPwaManifest({
-        name: 'Text Editor',
-        short_name: 'JATE',
-        description: 'Create notes or code snippets with or without an internet connection',
-        background_color: '#7eb4e2',
-        theme_color: '#7eb4e2',
+        fingerprints: false,
+        inject: true,
+        name: 'Just Another Text Editor',
+        short_name: 'J.A.T.E.',
+        description: 'Create notes or code snippets with or without an internet connection!',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
         start_url: '/',
         publicPath: '/',
         icons: [
@@ -48,6 +53,7 @@ module.exports = () => {
     ],
 
     module: {
+      // CSS loaders
       rules: [
         {
           test: /\.css$/i,
@@ -56,6 +62,7 @@ module.exports = () => {
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
+          // We use babel-loader in order to use ES6.
           use: {
             loader: 'babel-loader',
             options: {
