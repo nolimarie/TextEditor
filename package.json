@@ -1,9 +1,6 @@
 {
   "name": "jate",
   "version": "1.0.0",
-  "engines": {
-    "node": "16.13.0"
-  },
   "description": "Create notes or code snippets with or without an internet connection",
   "main": "server.js",
   "scripts": {
